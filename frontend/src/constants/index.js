@@ -237,7 +237,7 @@ export const features = [
         icon: blog,
         title: "Freelancer",
         desc: [
-            "As a web development freelancer, I create custom, responsive websites and dynamic web applications using React, Next, Node.js, and Laravel. My services include API integration, CMS setup, mobile-friendly designs, and ongoing support.",
+            "I create custom, responsive websites and dynamic web applications using React, Next, Node.js, and Laravel. My services include API integration, CMS setup & mobile-friendly designs.",
         ]
     },
     {
@@ -301,7 +301,7 @@ export const education = [
         school: "Bringham Young University - Idaho",
         type: "Diploma",
         year: "(2024)",
-        description: "This program helped me develop my web development skills in software development, web design, and database management. Coursework includes Web Development (HTML, CSS, JavaScript), Programming Languages (Python, C#, C++), and Database Systems (SQL, NoSQL)." 
+        description: "This program helped me develop my web development skills in software development, web design, and database management. Coursework includes Web Development (HTML, CSS, JavaScript), Programming Languages (Python, C#) and Database Systems (SQL, NoSQL)." 
     },
     {
         id: "pathway",
@@ -317,7 +317,7 @@ export const education = [
         school: "Delta State Polytechnic - Nigeria",
         type: "Computer Science - Ceritification",
         year: "(2017)",
-        description: "This certification provided comprehensive training for me in key areas of computing. Coursework includes programming languages such as Java and web technology, as well as database management systems, network administration, and IT management." 
+        description: "This certification provided comprehensive training for me in key areas of computing. Coursework includes web technology, database management systems, network administration, and IT management." 
     },
     {
         id: "nd",
@@ -325,7 +325,7 @@ export const education = [
         school: "Delta State Polytechnic - Nigeria",
         type: "Computer Science - Ceritification",
         year: "(2014)",
-        description: "This program covered a comprehensive curriculum covering essential topics in computing. Gained proficiency in database management systems, and explored networking fundamentals. Practical coursework includes software development projects, database administration, and IT support." 
+        description: "This program covered a comprehensive curriculum covering essential topics in computing. Gained proficiency in database management systems and networking fundamentals. Practical coursework includes, database administration, and IT support." 
     },
 ];
 

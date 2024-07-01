@@ -161,7 +161,7 @@ const Resume = ({id}) => {
                   
                   <div className='bg-black w-full h-[1px] my-8'></div>
     
-                  <p className="text-heading-color text-[18px] font-light text-justify leading-loose"> 
+                  <p className="text-color text-[17px] font-light leading-loose"> 
                     {edu.description}
                   </p>
                 </div>

@@ -45,7 +45,13 @@ class ContactMessageController extends Controller
                     'errors' => $validator->errors(),
                 ]);
             }else{
-                $adminEmail = env(key: 'NOTIFICATION_EMAIL');
+                $adminEmail = "my-portfolio@jerryebizo.com";
+                if (empty($adminEmail)) {
+                    return response()->json([
+                        'status' => 500,
+                        'message' => 'Admin email is not set in the environment file.',
+                    ]);
+                }
                 $settings = Settings::find(1);
 
                 $message = new ContactMessage();
