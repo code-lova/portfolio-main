@@ -1,0 +1,171 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  color: rgb(190, 188, 188);
+}
+
+body{
+  background-color: rgb(39, 39, 44);
+  overflow-x: hidden;
+}
+
+.progress-bar {
+  transition: width 1s ease-in-out;
+}
+
+
+
+@layer components {
+  .max-container {
+    max-width: 1740px;
+    margin: 0 auto;
+  }
+
+  .input {
+    @apply sm:flex-1 max-sm:w-full text-base leading-normal text-slate-gray pl-5 max-sm:p-5 outline-none sm:border-none border max-sm:border-slate-gray max-sm:rounded-full;
+  }
+
+  .transitioning {
+    @apply transition duration-300 ease-in-out transform hover:scale-105;
+  }
+
+ 
+}
+
+@layer utilities {
+  .padding {
+    @apply sm:px-16 sm:py-12 md:py-12 px-4 py-12;
+  }
+
+  .icon-color{
+    @apply text-red-600;
+  }
+
+  .card-color{
+    @apply bg-[#212428];
+  }
+
+  .padding-x {
+    @apply sm:px-16 px-8;
+  }
+
+  .padding-y {
+    @apply sm:py-24 py-12;
+  }
+
+  .padding-l {
+    @apply sm:pl-16 pl-8;
+  }
+
+  .padding-r {
+    @apply sm:pr-16 pr-8;
+  }
+
+  .padding-t {
+    @apply sm:pt-24 pt-12;
+  }
+
+  .padding-b {
+    @apply sm:pb-24 pb-12;
+  }
+
+  .info-text {
+    @apply font-montserrat text-slate-gray text-lg leading-7;
+  }
+
+  .text-color{
+    @apply font-montserrat text-slate-400;
+  }
+
+  .border-card{
+    @apply ring-stone-800 ring-[12px] rounded-lg;
+  }
+
+  .ul-li-style{
+    @apply hover:text-coral-red transitioning p-4 hover:shadow-shadow-1;
+  }
+
+  /* Custom Checkbox Styling */
+  .checkbox {
+    @apply appearance-none h-4 w-4 border-none rounded bg-gray-200 checked:bg-red-500 checked:ring-0;
+    transition: background-color 0.3s;
+  }
+
+  .checkbox:focus {
+      @apply ring-2 ring-red-500;
+  }
+
+  .form-label{
+    @apply p-4 w-full h-14 text-color shadow-inner-shadow bg-neutral-900 outline-none mt-2 rounded-lg focus-within:border-2 border-red-500;
+  }
+
+  .textarea{
+    @apply p-4 w-full h-[300px] text-color shadow-inner-shadow bg-neutral-900 outline-none mt-2 rounded-lg focus-within:border-2 border-red-500;
+  }
+
+  .admin-nav-hover{
+    @apply py-2.5 px-4 text-color rounded transition duration-200 hover:bg-gray-700 hover:text-white flex flex-row items-center space-x-1;
+  }
+
+  .admin-small-btn{
+    @apply my-8 p-6 flex items-center rounded-lg cursor-pointer h-10 card-color shadow-shadow-1 text-coral-red tracking-wider bg-gradient-to-r from-neutral-900 hover:transitioning;
+  }
+
+  .admin-form-btn{
+    @apply my-8 w-full lg:w-[300px] md:w-[300px] rounded-lg cursor-pointer h-16 card-color shadow-shadow-1 text-coral-red tracking-wider bg-gradient-to-r from-neutral-900 hover:transitioning flex items-center justify-center;
+  }
+
+  .cv-btn{
+    @apply my-2 w-full md:w-[250px] lg:w-[200px] xl:w-[300px] rounded-lg cursor-pointer h-16 card-color shadow-shadow-1 text-coral-red tracking-wider bg-gradient-to-r from-neutral-900 hover:text-primary transitioning flex items-center justify-center;
+  }
+
+  .cv-btn-sm{
+    @apply my-8 w-[200px] rounded-lg cursor-pointer h-16 card-color shadow-shadow-1 text-coral-red tracking-wider bg-gradient-to-r from-neutral-900 flex items-center justify-center;
+  }
+
+
+  
+
+ 
+
+
+
+
+
+  .sidebar {
+    @apply fixed top-0 left-0 h-full w-72 bg-neutral-900 transform -translate-x-full transition-transform duration-300 ease-in-out z-20;
+  }
+
+  .sidebar.open {
+    @apply translate-x-0;
+  }
+
+  .menu-button {
+    @apply w-20 absolute top-4 left-4 z-30;
+  }
+
+  .menu-icon {
+    @apply w-8 h-8 cursor-pointer;
+  }
+
+  .black-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 z-10 transition-opacity duration-300 ease-in-out;
+  }
+
+  .black-overlay.hidden {
+    @apply opacity-0 pointer-events-none;
+  }
+
+  .black-overlay.visible {
+    @apply opacity-100;
+  }
+}
