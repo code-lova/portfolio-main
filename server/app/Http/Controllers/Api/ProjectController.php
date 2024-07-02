@@ -180,6 +180,9 @@ class ProjectController extends Controller
         try{
             $project = Project::find($id);
             if($project){
+                if(File::exists($project->image)){
+                    File::delete($project->image);
+                }
                 $project->delete();
                 return response()->json([
                     'status' => 200,
