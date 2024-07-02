@@ -321,7 +321,7 @@ export const education = [
     },
     {
         id: "nd",
-        name: "Ordinary National Diploma (OND)",
+        name: "National Diploma (ND)",
         school: "Delta State Polytechnic - Nigeria",
         type: "Computer Science - Ceritification",
         year: "(2014)",
