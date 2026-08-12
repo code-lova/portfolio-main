@@ -4,6 +4,8 @@ import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
 
+const PROJECTS_CACHE_KEY = 'portfolio-projects-cache-v1';
+
 const Portfolio = ({id}) => {
 
   const [project, setProject] = useState([]);
@@ -45,7 +47,9 @@ const Portfolio = ({id}) => {
     try {
       const response = await axiosApiClient.get('/fetch-projects'); // Adjust the endpoint to your API
       if(response.data.status === 200){
-        setProject(response.data.project); // Assuming response.data contains the projects array
+        const freshProjects = response.data.project; // Assuming response.data contains the projects array
+        setProject(freshProjects);
+        localStorage.setItem(PROJECTS_CACHE_KEY, JSON.stringify(freshProjects));
       }
     } catch (error) {
       console.error("Unable to fetch data", error);
@@ -53,6 +57,15 @@ const Portfolio = ({id}) => {
   };
 
   useEffect(() => {
+    const cached = localStorage.getItem(PROJECTS_CACHE_KEY);
+    if (cached) {
+      try {
+        setProject(JSON.parse(cached));
+      } catch {
+        localStorage.removeItem(PROJECTS_CACHE_KEY);
+      }
+    }
+    // Always refetch in the background so any admin-side changes are picked up.
     getProjects();
   }, []);
 
