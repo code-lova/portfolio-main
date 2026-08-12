@@ -113,7 +113,7 @@ Route::post('/forgot-password', function (Request $request) {
     return $status === Password::RESET_LINK_SENT
         ? response()->json(['status' => 200, 'message' => __($status)])
         : response()->json(['status' => 401, 'message' => __($status)]);
-})->middleware('guest')->name('password.email');
+})->middleware('guest')->name('api.password.email');
 
 
 //RESET PASSWORD FUNCTION
@@ -147,5 +147,5 @@ Route::post('/reset-password', function (Request $request) {
     return $status === Password::PASSWORD_RESET
         ? response()->json(['status' => 200, 'message' => __($status)])
         : response()->json(['status' => 498, 'message' => __($status)]);
-})->middleware('guest')->name('password.update');
+})->middleware('guest')->name('api.password.update');
 
