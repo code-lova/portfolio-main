@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Blog extends Model
 {
@@ -19,10 +20,24 @@ class Blog extends Model
         'meta_description',
         'status',
     ];
+    protected $appends = ['image_url'];
 
     protected $with = ['blogcategory'];
     public function blogcategory(){
         return $this->belongsTo(BlogCategory::class, 'blog_category_id', 'id');
+    }
+
+    public function getImageUrlAttribute(): ?string
+    {
+        if (!$this->image) {
+            return null;
+        }
+
+        if (config('filesystems.uploads_disk') === 'cloudinary') {
+            return Storage::disk('cloudinary')->url($this->image);
+        }
+
+        return rtrim(config('app.url'), '/').'/'.$this->image;
     }
 }
 

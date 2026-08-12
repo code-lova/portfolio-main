@@ -8,10 +8,40 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
+    private function storeImage($file, string $directory): string
+    {
+        $filename = time().'.'.$file->hashName();
+        $path = $directory.'/'.$filename;
+
+        if (config('filesystems.uploads_disk') === 'cloudinary') {
+            Storage::disk('cloudinary')->putFileAs($directory, $file, $filename);
+        } else {
+            $file->move($directory.'/', $filename);
+        }
+
+        return $path;
+    }
+
+    private function deleteImage(?string $path): void
+    {
+        if (!$path) {
+            return;
+        }
+
+        if (config('filesystems.uploads_disk') === 'cloudinary') {
+            if (Storage::disk('cloudinary')->exists($path)) {
+                Storage::disk('cloudinary')->delete($path);
+            }
+        } elseif (File::exists($path)) {
+            File::delete($path);
+        }
+    }
+
     public function storeProjectApi(Request $request){
         try{
             $validator = Validator::make($request->all(), [
@@ -41,11 +71,7 @@ class ProjectController extends Controller
                 $project->project_link = $request->project_link;
                 $project->demo_link = $request->demo_link;
                 if($request->hasFile('image')){
-                    $file = $request->file('image');
-                    $filename = time() .'.'.$file->hashName();
-                    $file->move('uploads/project/', $filename);
-                    $project->image = 'uploads/project/'.$filename;
-
+                    $project->image = $this->storeImage($request->file('image'), 'uploads/project');
                 }
                 $project->status = $request->status == true ? '1': '0';
                 $project->save();
@@ -142,16 +168,8 @@ class ProjectController extends Controller
                 $project->project_link = $request->project_link;
                 $project->demo_link = $request->demo_link;
                 if($request->hasFile('image')){
-
-                    $destination_path = $project->image;
-                    if(File::exists($destination_path)){
-                        File::delete($destination_path);
-                    }
-                    $file = $request->file('image');
-                    $filename = time() .'.'.$file->hashName();
-                    $file->move('uploads/project/', $filename);
-                    $project->image = 'uploads/project/'.$filename;
-
+                    $this->deleteImage($project->image);
+                    $project->image = $this->storeImage($request->file('image'), 'uploads/project');
                 }
                 $project->status = $request->status == true ? '1': '0';
                 $project->save();
@@ -180,9 +198,7 @@ class ProjectController extends Controller
         try{
             $project = Project::find($id);
             if($project){
-                if(File::exists($project->image)){
-                    File::delete($project->image);
-                }
+                $this->deleteImage($project->image);
                 $project->delete();
                 return response()->json([
                     'status' => 200,

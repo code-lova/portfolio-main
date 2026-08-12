@@ -10,10 +10,40 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class BlogController extends Controller
 {
+    private function storeImage($file, string $directory): string
+    {
+        $filename = time().'.'.$file->hashName();
+        $path = $directory.'/'.$filename;
+
+        if (config('filesystems.uploads_disk') === 'cloudinary') {
+            Storage::disk('cloudinary')->putFileAs($directory, $file, $filename);
+        } else {
+            $file->move($directory.'/', $filename);
+        }
+
+        return $path;
+    }
+
+    private function deleteImage(?string $path): void
+    {
+        if (!$path) {
+            return;
+        }
+
+        if (config('filesystems.uploads_disk') === 'cloudinary') {
+            if (Storage::disk('cloudinary')->exists($path)) {
+                Storage::disk('cloudinary')->delete($path);
+            }
+        } elseif (File::exists($path)) {
+            File::delete($path);
+        }
+    }
+
     //THESE ARE FUNCTION FOR THE BLOG CATEGORY
     public function storeBlogCategoryApi(Request $request) {
         try{
@@ -230,11 +260,7 @@ class BlogController extends Controller
                 $blog->meta_keywords = $request->meta_keywords;
                 $blog->meta_description = $request->meta_description;
                 if($request->hasFile('image')){
-                    $file = $request->file('image');
-                    $filename = time() .'.'.$file->hashName();
-                    $file->move('uploads/blog/', $filename);
-                    $blog->image = 'uploads/blog/'.$filename;
-
+                    $blog->image = $this->storeImage($request->file('image'), 'uploads/blog');
                 }
                 $blog->status = $request->status == true ? '1': '0';
                 $blog->save();
@@ -333,16 +359,8 @@ class BlogController extends Controller
                 $blog->meta_keywords = $request->meta_keywords;
                 $blog->meta_description = $request->meta_description;
                 if($request->hasFile('image')){
-
-                    $destination_path = $blog->image;
-                    if(File::exists($destination_path)){
-                        File::delete($destination_path);
-                    }
-                    $file = $request->file('image');
-                    $filename = time() .'.'.$file->hashName();
-                    $file->move('uploads/blog/', $filename);
-                    $blog->image = 'uploads/blog/'.$filename;
-
+                    $this->deleteImage($blog->image);
+                    $blog->image = $this->storeImage($request->file('image'), 'uploads/blog');
                 }
                 $blog->status = $request->status == true ? '1': '0';
                 $blog->save();
@@ -371,6 +389,7 @@ class BlogController extends Controller
         try{
             $blog = Blog::find($id);
             if($blog){
+                $this->deleteImage($blog->image);
                 $blog->delete();
                 return response()->json([
                     'status' => 200,

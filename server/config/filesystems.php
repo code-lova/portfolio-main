@@ -56,7 +56,24 @@ return [
             'throw' => false,
         ],
 
+        'cloudinary' => [
+            'driver' => 'cloudinary',
+        ],
+
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Uploads Disk
+    |--------------------------------------------------------------------------
+    |
+    | Which disk ProjectController/BlogController write uploaded images to.
+    | "local" moves files straight into public/uploads (matches local dev).
+    | "cloudinary" is used in production, where the filesystem is ephemeral.
+    |
+    */
+
+    'uploads_disk' => env('UPLOADS_DISK', 'local'),
 
     /*
     |--------------------------------------------------------------------------
