@@ -1,4 +1,3 @@
-import React from 'react'
 import { Navigate } from 'react-router-dom';
 
 const TOKEN_EXPIRATION_TIME = 60 * 60 * 1000; // 1 hour in milliseconds

@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import { features } from '../../constants';
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";

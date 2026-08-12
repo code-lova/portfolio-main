@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { profile } from "../../assets/images";
 import { toast } from "react-toastify";
 import axiosApiClient, {getCsrfToken} from "../../axios";

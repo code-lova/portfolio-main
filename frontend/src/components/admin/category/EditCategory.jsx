@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axiosApiClient from '../../../axios';
 import { toast } from 'react-toastify';
@@ -14,10 +14,10 @@ const EditCategory = () => {
     let { id } = useParams();
 
    
-    const getCategory = async () => {
+    const getCategory = useCallback(async () => {
         try {
             const response = await axiosApiClient.get(`/edit-category/${id}`);
-            
+
             const { status, category } = response.data;
             if (status === 200) {
                 setCategory(category);
@@ -25,11 +25,11 @@ const EditCategory = () => {
         } catch (error) {
             console.error("Error fetching category:", error);
         }
-    };
+    }, [id]);
 
     useEffect(() => {
         getCategory();
-    }, [id]);
+    }, [getCategory]);
 
 
     const handleInput = (e) => {

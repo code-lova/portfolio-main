@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { contact1 } from '../../assets/images';
 import { contact } from '../../constants';
 import {findMeSocials } from '../../constants';
-import * as sIIcons from "react-icons/sl";
+import { slIcons as sIIcons } from "../../assets/icons/reactIcons";
 import axiosApiClient from '../../axios';
 import { toast } from 'react-toastify';
 

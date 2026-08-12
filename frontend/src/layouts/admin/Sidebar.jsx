@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { logo, menu, close } from "../../assets/icons";
 import { adminNavLinks } from '../../constants';
-import * as riIcons from "react-icons/ri";
+import { riIcons } from "../../assets/icons/reactIcons";
 import { Link, useNavigate } from 'react-router-dom';
 import axiosApiClient from '../../axios';
 import { toast } from 'react-toastify';
@@ -40,6 +40,7 @@ const Sidebar = () => {
           <img src={logo} alt="logo" className="w-10 sm:block hidden" />
           <p className="text-white-400 text-[18px] font-bold cursor-pointer sm:block hidden">Administrator</p>
         </div>
+        
         <nav className="mt-28 xl:mt-16">
           {adminNavLinks.map((navItem) => {
             const IconComponent = riIcons[navItem.icon]
@@ -79,6 +80,7 @@ const Sidebar = () => {
           
         </nav>
       </div>
+      
       <div className="fixed top-4 left-4 my-2 right-4 flex justify-between xl:hidden z-20">
         <img src={logo} alt="logo" className="w-10 mr-auto" />
         <button onClick={() => setToggle(!toggle)}>

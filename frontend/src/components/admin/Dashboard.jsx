@@ -1,12 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import * as riIcons from "react-icons/ri";
 import { Link } from 'react-router-dom';
 import axiosApiClient from '../../axios';
 
 const Dashboard = () => {
-
-
-  const todayDate = new Date().getDate();
 
   const [visits, setVisits] = useState(0);
   const [project, setProject] = useState(0);

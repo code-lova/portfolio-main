@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axiosApiClient from '../../../axios';
 import { toast } from 'react-toastify';
@@ -37,7 +37,7 @@ const Editblog = () => {
     }
 
 
-    const getSelectedBlog = async() => {
+    const getSelectedBlog = useCallback(async() => {
         try{
             const response = await axiosApiClient.get(`/edit-blog/${id}`);
             const {status, blog} = response.data;
@@ -49,12 +49,12 @@ const Editblog = () => {
         }finally{
             setLoading(false);
         }
-    }
+    }, [id])
 
     useEffect(() => {
         getCategories();
         getSelectedBlog()
-    },[id]);
+    },[id, getSelectedBlog]);
     
     
     const handleInput = (e) => {

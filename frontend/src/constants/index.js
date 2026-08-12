@@ -11,7 +11,6 @@ import {
     git,
     figma,
     docker,
-    threejs,
     laravel,
     mysql,
     php,
@@ -22,7 +21,6 @@ import {
     postgresql,
     sql,
     django,
-    
 } from "../assets/icons";
 
 import {
@@ -35,7 +33,6 @@ import {
 
 } from "../assets/images"
 
-import * as sIIcons from "react-icons/sl"
 
 export const navLinks = [
 
@@ -210,6 +207,26 @@ export const technologies = [
     {
         name: "sql",
         icon: sql,
+    },
+    {
+        name: "TypeScript",
+        icon: typescript,
+    },
+    {
+        name: "Redux",
+        icon: redux,
+    },
+    {
+        name: "Docker",
+        icon: docker,
+    },
+    {
+        name: "PostgreSQL",
+        icon: postgresql,
+    },
+    {
+        name: "Django",
+        icon: django,
     },
 ];
 

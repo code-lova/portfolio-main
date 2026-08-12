@@ -1,7 +1,6 @@
 
 import logo from "./logo.png";
 import github from "./github.png";
-import youtube from "./youtube.png";
 import menu from "../menu.svg"
 import close from "../close.svg"
 
@@ -58,7 +57,6 @@ export {
   csharp,
   express,
   postgresql,
-  youtube,
   sql,
   menu,
   close,

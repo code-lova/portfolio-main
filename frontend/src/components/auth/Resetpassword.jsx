@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { profile } from "../../assets/images";
-import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import axiosApiClient, {getCsrfToken} from "../../axios";
 
@@ -22,7 +22,7 @@ const Resetpassword = () => {
 
   useEffect(() => {
     setEmail(searchParams.get('email'));
-  }, [])
+  }, [searchParams])
   
 
 

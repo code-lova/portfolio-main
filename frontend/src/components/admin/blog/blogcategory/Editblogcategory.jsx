@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axiosApiClient from '../../../../axios';
 import { toast } from 'react-toastify';
@@ -17,11 +17,7 @@ const Editblogcategory = () => {
   const [error, setErrors] = useState({});
   let { id } = useParams();
 
-  useEffect(() => {
-    getCategory();
-  }, [id]);
-
-  const getCategory = async () => {
+  const getCategory = useCallback(async () => {
       try {
           const response = await axiosApiClient.get(`/edit-blog-category/${id}`);
           const { status, category } = response.data;
@@ -31,9 +27,11 @@ const Editblogcategory = () => {
       } catch (error) {
           console.error("Error fetching category:", error);
       }
-  };
+  }, [id]);
 
-   
+  useEffect(() => {
+    getCategory();
+  }, [getCategory]);
 
 
   const handleInput = (e) => {

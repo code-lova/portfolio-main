@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { navLinks } from "../../constants";
 import { logo, menu, close } from "../../assets/icons";
-import * as sIIcons from "react-icons/sl"
+import { slIcons as sIIcons } from "../../assets/icons/reactIcons";
 import { findMeSocials } from "../../constants";
 import { profile } from "../../assets/images"
 
@@ -16,7 +16,7 @@ const Navbar = () => {
 
 
 
-    const validToken = () => {
+    const validToken = useCallback(() => {
         const TOKEN_EXPIRATION_TIME = 60 * 60 * 1000; // 1 hour in milliseconds
         const token = localStorage.getItem("auth_token");
         const tokenCreationTime = localStorage.getItem('token_creation_time');
@@ -29,12 +29,12 @@ const Navbar = () => {
             localStorage.removeItem('token_creation_time');
             navigate('/'); // Redirect to login if token is invalid
         }
-    }
+    }, [navigate])
 
 
     useEffect(() => {
         validToken();
-    }, [navigate]);
+    }, [validToken]);
 
 
     

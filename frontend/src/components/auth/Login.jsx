@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { profile } from "../../assets/images";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";

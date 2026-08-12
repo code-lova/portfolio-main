@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axiosApiClient from '../../../axios';
 import { toast } from 'react-toastify';
@@ -28,7 +28,7 @@ const EditProject = () => {
     const {id} = useParams();
 
 
-    const getSelectedProject = async() => {
+    const getSelectedProject = useCallback(async() => {
         try{
             const response = await axiosApiClient.get(`/edit-project/${id}`);
             const {status, project} = response.data;
@@ -40,7 +40,7 @@ const EditProject = () => {
         }finally{
             setLoading(false);
         }
-    }
+    }, [id])
 
 
     const getCategories = async() => {
@@ -58,7 +58,7 @@ const EditProject = () => {
     useEffect(() => {
         getCategories();
         getSelectedProject();
-    },[id])
+    },[id, getSelectedProject])
 
 
     const handleInput = (e) => {

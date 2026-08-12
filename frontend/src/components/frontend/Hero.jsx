@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import {useEffect} from 'react'
 import {profileImg} from "../../assets/images";
-import * as sIIcons from "react-icons/sl";
-import { findMeSocials, bestSkills } from "../../constants";
+import { slIcons as sIIcons } from "../../assets/icons/reactIcons";
+import { findMeSocials } from "../../constants";
 import axiosApiClient from '../../axios';
 
 const Hero = () => {
@@ -48,7 +48,7 @@ const Hero = () => {
             <div className='mt-10'>
                 <p className='font-mono uppercase text-heading-color'>Welcome to my world</p>
                 <h1 className='mt-8 text-[40px] text-primary'>
-                    Hi, I'm <span className='icon-color'>Jeremiah</span> 
+                    Hi, I&apos;m <span className='icon-color'>Jeremiah</span>
                 </h1>
                 <p className='text-[23px] text-primary'>A Full Stack Web Deveoper</p>
                 <p className='my-4 leading-loose text-color'>
@@ -100,7 +100,7 @@ const Hero = () => {
                 <div className=''>
                     <p className='font-mono font-bold uppercase text-heading-color'>Welcome to my world</p>
                     <h1 className='mt-8 text-[55px] text-primary font-bold'>
-                        Hi, I'm <span className='icon-color'>Jeremiah</span> 
+                        Hi, I&apos;m <span className='icon-color'>Jeremiah</span>
                     </h1>
                     <p className='text-[23px] text-heading-color'>A Full Stack Web Deveoper</p>
                     <p className='my-2 leading-loose text-primary'>
