@@ -61,6 +61,8 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function(){
         //settings-password
         Route::post('/update-admin-password', 'UpdatePasswordApi');
         Route::post('update-switch-settings', 'updateSettingsApi');
+        Route::get('/settings', 'fetchSettingsApi');
+        Route::post('/update-resume', 'updateResumeApi');
 
     });
 

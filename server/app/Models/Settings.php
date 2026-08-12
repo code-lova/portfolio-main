@@ -12,5 +12,6 @@ class Settings extends Model
     protected $fillable = [
         'blog',
         'email_notification',
+        'resume_path',
     ];
 }

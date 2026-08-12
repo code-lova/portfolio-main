@@ -2,19 +2,38 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Settings;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class DownloadController extends Controller
 {
     public function downloadCV()
     {
-        $filePath = storage_path('app/public/document/jeremiah-ebizo-resume.pdf'); // path to file location
+        $resumePath = Settings::where('id', '1')->value('resume_path');
 
-        if (!file_exists($filePath)) {
+        if (!$resumePath) {
             abort(404);
         }
 
-        return response()->download($filePath, 'jeremiah-ebizo-resume.pdf');
+        if (config('filesystems.uploads_disk') === 'cloudinary') {
+            $disk = Storage::disk('cloudinary');
+
+            if (!$disk->exists($resumePath)) {
+                abort(404);
+            }
+
+            return response($disk->get($resumePath), 200, [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'attachment; filename="resume.pdf"',
+            ]);
+        }
+
+        if (!File::exists($resumePath)) {
+            abort(404);
+        }
+
+        return response()->download($resumePath, 'resume.pdf');
     }
 }
