@@ -91,7 +91,7 @@ const Portfolio = ({id}) => {
             <div onClick={() => openModal(item)} key={item.id} className='h-[90%] card-color rounded-xl cursor-pointer my-10 shadow-shadow-1 p-8 hover:bg-gradient-to-r from-neutral-900'>
               <img 
                 className="object-contain ring-neutral-600 rounded-xl transitioning w-auto h-auto" 
-                src={`${import.meta.env.VITE_BASE_URL}/${item.image}`} 
+                src={item.image_url}
                 alt="food recipe app"
                 loading="lazy" 
               />
@@ -125,7 +125,7 @@ const Portfolio = ({id}) => {
 
                 {selectedProject.image && 
                   <img className="w-full object-cover block mx-auto rounded-xl lg:w-[600px] lg:my-[40px] xl:h-[70%]" 
-                  src={`${import.meta.env.VITE_BASE_URL}/${selectedProject.image}`} 
+                  src={selectedProject.image_url}
                 />}
                 <div className="p-4 mt-5">
                   <h2 className="text-2xl font-bold text-heading-color">{selectedProject.category.name}</h2>

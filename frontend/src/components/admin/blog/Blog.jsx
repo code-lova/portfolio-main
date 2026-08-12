@@ -89,7 +89,7 @@ const Blog = () => {
           return(
             <div key={item.id} id="catcard" className="card-color p-6 w-[300px] md:p-4 shadow-shadow-1 rounded-lg">
               <img
-                src={`${import.meta.env.VITE_BASE_URL}/${item.image}`}
+                src={item.image_url}
                 alt={`${item.title}` || 'image'}
                 className="block mx-auto rounded-xl object-contain"
                 width={700}

@@ -134,7 +134,7 @@ const Blog = ({id}) => {
               <div className='p-2'>
                 <img 
                   className='rounded-xl block mx-auto object-contain' 
-                  src={`${import.meta.env.VITE_BASE_URL}/${item.image}`} 
+                  src={item.image_url}
                   alt="blog image" 
                   loading='lazy' 
                   width={500} 
@@ -177,7 +177,7 @@ const Blog = ({id}) => {
             <div className="overflow-y-auto h-[500px] p-4">
               {selecteBlog.image && 
                 <img className="w-full h-64 object-cover rounded-xl" 
-                src={`${import.meta.env.VITE_BASE_URL}/${selecteBlog.image}`} 
+                src={selecteBlog.image_url}
                   alt={selecteBlog.title} 
               />}
               <div className="p-4 mt-5">
