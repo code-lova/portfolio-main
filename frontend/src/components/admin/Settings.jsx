@@ -226,7 +226,7 @@ const Settings = () => {
               <>
                 {' '}
                 <a
-                  href={`${import.meta.env.VITE_BASE_URL}/download-cv`}
+                  href={`${import.meta.env.VITE_BASE_URL}/api/download-cv`}
                   target="_blank"
                   rel="noreferrer"
                   className="text-coral-red underline"
